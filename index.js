@@ -35,37 +35,5 @@ client.on("interactionCreate", async (interaction) => {
      }
     })
 //https://ra3dstudio.com CopyRight Codes
-//set prefix | تحديد برفكس
-const db = require('pro.db')//ضروري تحمل البكج 
-
-client.on('message', async message => {
-  if(!message.content.startsWith(prefix) || message.author.bot) return;
-  const args = message.content.slice(prefix.length).trim().split(/ +/);
-  const command = args.shift().toLowerCase();
-  
-  if(command === 'prefix') {
-
-    let msg = message.content.split(" ").slice(1).join(" ");
-    if(!msg) return await message.channel.send('Add Prefix');
-
-    try {
-      await db.set(`prefix_${message.guild.id}`,msg);
-      await message.channel.send(`Done : **${msg}**`);
-    } catch (err) {
-      await message.channel.send(`Erorr : ${err}`);
-    }
-  }
-});
-//مثال
-client.on('message',async message => {
-  if(!message.guild || message.author.bot) return;
-  let data = await db.get(`prefix_${message.guild.id}`);
-  if(!data) return;
-  if(message.content.startsWith(data + 'test')) {
-    await message.channel.send('Working..');
-  }
-})
-
-//https://ra3dstudio.com CopyRight Codes
 ///
 client.login(process.env.token)
