@@ -6,52 +6,7 @@ client.on("ready", () => {
   console.log(`✅ | Logged as ${client.user.tag}`);
 })
 //////////////////////////////////////
-//Code Set-lang | كود تغيير لغة البوت 
-const db = require('quick.db')
-client.on("messageCreate", message =>{
-if(message.content.startsWith(prefix + "set-lang")){
-const args = message.content.split(" ").slice(1)
-if(!message.member.permissions.has('ADMINISTRATOR')) return message.channel.send({ content: "You Dont Have ADMINISTRATOR permission" })
-if(args == "ar"){
-db.set(`${message.guild.id}`,"ar")
-const embed = new Discord.MessageEmbed()
-.setTitle("Language Change")
-.setColor("BLUE")
-.setDescription(`Language Changed To \`AR\``)
-.setFooter(`Changed By ${message.author.tag}`)
-message.channel.send({ embeds: [embed] }) 
-}else if(args == "en"){
- db.set(`${message.guild.id}`,"en") 
-const embed = new Discord.MessageEmbed()
-.setTitle("Language Change")
-.setColor("BLUE")
-.setDescription(`Language Changed To \`EN\``)
-.setFooter(`Changed By ${message.author.tag}`)
-message.channel.send({ embeds: [embed] })
-}else {
-  message.channel.send({ content: "Please Type Language (en, ar)" })
-}
-}
-})
-///Example Code
-client.on("messageCreate", message =>{
-if(message.content === prefix + "test"){
-const lang = db.fetch(message.guild.id)
-if(lang == "ar"){
-const embed = new Discord.MessageEmbed()
-.setColor("BLUE")
-.setDescription("اللغة عربية")
-message.channel.send({ embeds: [embed] })
-}else if(lang === "en") {
-const embed = new Discord.MessageEmbed()
-.setColor("BLUE")
-.setDescription("The Language is English")
-message.channel.send({ embeds: [embed] }) 
-}else {
-  const embed = new Discord.MessageEmbed()
-.setColor("BLUE")
-.setDescription("لغة البوت الرئيسية")
-message.channel.send({ embeds: [embed] })
+//
 }
 
 }
