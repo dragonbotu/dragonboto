@@ -22,7 +22,6 @@ client.on("messageCreate" , saleh => {
 
     saleh.reply({content:`**Click the button to invite : \n \`${bot.username}\` 👇**` , components:[row]})
   }
-});
 //https://ra3dstudio.com CopyRight Codes
 ///
 client.login(process.env.token)
