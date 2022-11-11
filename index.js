@@ -44,7 +44,7 @@ client.on("messageCreate" , async message => {
    let member = message.member;
    let embed = new Discord.MessageEmbed()
    .setAuthor(message.author.username , message.author.displayAvatarURL())
-   .setTitle("**مش قلنا بلاش سب طب خد بقا تايم اوت😑**")
+   .setTitle("**ok havefun with timeout **")
    .setDescription(`**You are muted in \`${message.guild.name}\` server for a 1 hour**\n**For sharing a bad words or links in the chat !**\n**Your message : \`${message.content}\`**`)
    .setThumbnail(message.guild.iconURL())
    .setFooter(message.guild.name , message.guild.iconURL())
