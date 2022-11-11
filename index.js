@@ -7,7 +7,6 @@ client.on("ready", () => {
 })
 //////////////////////////////////////
 //
-}
 })   
 //https://ra3dstudio.com CopyRight Codes
 //كود بنق نفس بروبوت القديم | ping code like probot
