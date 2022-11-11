@@ -6,5 +6,15 @@ client.on("ready", () => {
   console.log(`✅ | Logged as ${client.user.tag}`);
 })
 //////////////////////////////////////
+//كود بنق نفس بروبوت القديم | ping code like probot
+client.on('messageCreate' , message => {
+  if(message.author.bot) return;
+  if(message.content.startsWith("ping")) {
+ message.channel.send('Pong...').then((msg) => {
+      msg.edit(`\`\`\`javascript\nTime taken: ${msg.createdTimestamp - message.createdTimestamp} ms.\nDiscord API: ${Math.round(client.ws.ping)} ms.\`\`\``);
+ })
+  }  
+ });
+//https://ra3dstudio.com CopyRight Codes
 ///
 client.login(process.env.token)
