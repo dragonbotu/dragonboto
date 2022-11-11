@@ -17,6 +17,5 @@ client.on('message', message => {
         message.channel.send(`${message.author} يمنع نشر روابط سرفرات`)
     }
 });
-//https://ra3dstudio.com CopyRight Codes
 ///
 client.login(process.env.token)
