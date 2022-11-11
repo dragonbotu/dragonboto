@@ -35,26 +35,37 @@ client.on("interactionCreate", async (interaction) => {
      }
     })
 //https://ra3dstudio.com CopyRight Codes
-//Anti Bad words with Timeout Code | كود منع سب مع تايم اوت
-client.on("messageCreate" , async message => {
- let words = ["test","discord.gg/"]
- for (let s = 0;s < words.length;s++) {
-   if(message.content.includes(words[s])) {
-   if(!message.member.permissions.has("ADMINISTRATOR")) {  
-   let member = message.member;
-   let embed = new Discord.MessageEmbed()
-   .setAuthor(message.author.username , message.author.displayAvatarURL())
-   .setTitle("**ok havefun with timeout **")
-   .setDescription(`**You are muted in \`${message.guild.name}\` server for a 1 hour**\n**For sharing a bad words or links in the chat !**\n**Your message : \`${message.content}\`**`)
-   .setThumbnail(message.guild.iconURL())
-   .setFooter(message.guild.name , message.guild.iconURL())
-   message.delete()
-   await message.channel.send(`${message.member} **It's Not allowed to share bad words or links !**`)
-   await member.timeout(3600000 , "idk")
-   await message.member.send({embeds:[embed]})
-   }}
- }
+//set prefix | تحديد برفكس
+const db = require('pro.db')//ضروري تحمل البكج 
+
+client.on('message', async message => {
+  if(!message.content.startsWith(prefix) || message.author.bot) return;
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
+  const command = args.shift().toLowerCase();
+  
+  if(command === 'prefix') {
+
+    let msg = message.content.split(" ").slice(1).join(" ");
+    if(!msg) return await message.channel.send('Add Prefix');
+
+    try {
+      await db.set(`prefix_${message.guild.id}`,msg);
+      await message.channel.send(`Done : **${msg}**`);
+    } catch (err) {
+      await message.channel.send(`Erorr : ${err}`);
+    }
+  }
 });
+//مثال
+client.on('message',async message => {
+  if(!message.guild || message.author.bot) return;
+  let data = await db.get(`prefix_${message.guild.id}`);
+  if(!data) return;
+  if(message.content.startsWith(data + 'test')) {
+    await message.channel.send('Working..');
+  }
+})
+
 //https://ra3dstudio.com CopyRight Codes
 ///
 client.login(process.env.token)
