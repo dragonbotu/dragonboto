@@ -17,5 +17,23 @@ client.on('messageCreate' , message => {
   }  
  });
 //https://ra3dstudio.com CopyRight Codes
+//كود بنج سلاش كوماند | Code Ping with Slash Commands v13 js
+client.on("interactionCreate", async (interaction) => {
+     if (!interaction.isCommand()) return;
+     if (interaction.commandName === "ping") {
+       let tk = Date.now() - interaction.createdTimestamp
+     let embed = new Discord.MessageEmbed()
+      .setColor("BLUE")
+      .setThumbnail(interaction.guild.iconURL())
+      .setDescription(`
+**🏓pong!:**
+:stopwatch: WS: ${client.ws.ping}ms
+:hourglass: Time : ${tk}ms
+`) 
+  
+             interaction.reply({ embeds: [embed] , ephemeral: false})
+     }
+    })
+//https://ra3dstudio.com CopyRight Codes
 ///
 client.login(process.env.token)
