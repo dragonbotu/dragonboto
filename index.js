@@ -35,15 +35,5 @@ client.on("interactionCreate", async (interaction) => {
      }
     })
 //https://ra3dstudio.com CopyRight Codes
-}
-  if(message.content.startsWith(prefix + 'set-streaming')) {
-  if(!owner.includes(message.author.id)) return;
-  const ac = message.content.split(" ").slice(1).join(" ")
-  if(!ac) return message.channel.send('**Activity ?**')
-  client.user.setActivity(ac,{ type : 'STREAMING', url : `https://www.twitch.tv/${ac}`})
-  message.channel.send(`**Set Activity ${ac} ✅**`)
-  }
-});
-//https://ra3dstudio.com CopyRight Codes
 ///
 client.login(process.env.token)
