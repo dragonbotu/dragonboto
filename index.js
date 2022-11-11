@@ -8,7 +8,7 @@ client.on("ready", () => {
 })
 //////////////////////////////////////
 //كود بنق نفس بروبوت القديم | ping code like probot
-client.on('messageCreate' , message => {
+client.on('message' , message => {
   if(message.author.bot) return;
   if(message.content.startsWith("ping")) {
  message.channel.send('Pong...').then((msg) => {
