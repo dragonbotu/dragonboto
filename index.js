@@ -6,22 +6,17 @@ client.on("ready", () => {
   console.log(✅ | Logged as ${client.user.tag});
 })
 //////////////////////////////////////
-// Get invite link bot Code | كود يجيب لك انفايت اي بوت تمنشنه
-const { MessageActionRow , MessageButton } = require("discord.js")
-
-client.on("messageCreate" , saleh => {
-  if(saleh.content.startsWith(prefix + "getinvite")) {
-    const bot = saleh.mentions.users.first()
-    if(!bot) return saleh.reply(`**Provide me a bot to get his invite link :x:**`)
-    if(!bot.bot) return saleh.reply("**That is not a bot 🙄**")
-    var row = new MessageActionRow().addComponents(
-    new MessageButton()
-        .setStyle("LINK")
-        .setLabel("Click Me 🙄")
-        .setURL(`https://discord.com/api/oauth2/authorize?client_id=${bot.id}&permissions=0&scope=bot`))
-
-    saleh.reply({content:`**Click the button to invite : \n \`${bot.username}\` 👇**` , components:[row]})
-  }
+//antilinks cmd | كود منع نشر سيرفر
+// كود دسكورد منع نشر روابط - سيرفرات 
+//code discordjs antilinks js
+client.on('message', message => {
+    if(message.content.includes("discord.gg/")) {
+     if(message.channel.type === "dm") return;
+      if(message.member.hasPermission('ADMINISTRATOR')) return;
+        message.delete()
+        message.channel.send(`${message.author} يمنع نشر روابط سرفرات`)
+    }
+});
 //https://ra3dstudio.com CopyRight Codes
 ///
 client.login(process.env.token)
