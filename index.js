@@ -35,5 +35,26 @@ client.on("interactionCreate", async (interaction) => {
      }
     })
 //https://ra3dstudio.com CopyRight Codes
+//Anti Bad words with Timeout Code | كود منع سب مع تايم اوت
+client.on("messageCreate" , async message => {
+ let words = ["test","discord.gg/"]
+ for (let s = 0;s < words.length;s++) {
+   if(message.content.includes(words[s])) {
+   if(!message.member.permissions.has("ADMINISTRATOR")) {  
+   let member = message.member;
+   let embed = new Discord.MessageEmbed()
+   .setAuthor(message.author.username , message.author.displayAvatarURL())
+   .setTitle("**مش قلنا بلاش سب طب خد بقا تايم اوت😑**")
+   .setDescription(`**You are muted in \`${message.guild.name}\` server for a 1 hour**\n**For sharing a bad words or links in the chat !**\n**Your message : \`${message.content}\`**`)
+   .setThumbnail(message.guild.iconURL())
+   .setFooter(message.guild.name , message.guild.iconURL())
+   message.delete()
+   await message.channel.send(`${message.member} **It's Not allowed to share bad words or links !**`)
+   await member.timeout(3600000 , "idk")
+   await message.member.send({embeds:[embed]})
+   }}
+ }
+});
+//https://ra3dstudio.com CopyRight Codes
 ///
 client.login(process.env.token)
