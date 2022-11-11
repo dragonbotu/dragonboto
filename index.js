@@ -16,7 +16,6 @@ client.on('message' , message => {
  })
   }  
  });
-//https://ra3dstudio.com CopyRight Codes
 //كود بنج سلاش كوماند | Code Ping with Slash Commands v13 js
 client.on("interactionCreate", async (interaction) => {
      if (!interaction.isCommand()) return;
@@ -45,6 +44,5 @@ client.on('message', message => {
         message.channel.send(`${message.author} يمنع نشر روابط سرفرات`)
     }
 });
-//https://ra3dstudio.com CopyRight Codes
 ///
 client.login(process.env.token)
