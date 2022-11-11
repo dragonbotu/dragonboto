@@ -6,34 +6,24 @@ client.on("ready", () => {
   console.log(✅ | Logged as ${client.user.tag});
 })
 //////////////////////////////////////
-'use strict';
+// Get invite link bot Code | كود يجيب لك انفايت اي بوت تمنشنه
+const { MessageActionRow , MessageButton } = require("discord.js")
 
-/**
- * A ping pong bot, whenever you send "ping", it replies "pong".
- */
+client.on("messageCreate" , saleh => {
+  if(saleh.content.startsWith(prefix + "getinvite")) {
+    const bot = saleh.mentions.users.first()
+    if(!bot) return saleh.reply(`**Provide me a bot to get his invite link :x:**`)
+    if(!bot.bot) return saleh.reply("**That is not a bot 🙄**")
+    var row = new MessageActionRow().addComponents(
+    new MessageButton()
+        .setStyle("LINK")
+        .setLabel("Click Me 🙄")
+        .setURL(`https://discord.com/api/oauth2/authorize?client_id=${bot.id}&permissions=0&scope=bot`))
 
-// Import the discord.js module
-const Discord = require('discord.js');
-
-// Create an instance of a Discord client
-const client = new Discord.Client();
-
-/**
- * The ready event is vital, it means that only _after_ this will your bot start reacting to information
- * received from Discord
- */
-client.on('ready', () => {
-  console.log('I am ready!');
-});
-
-// Create an event listener for messages
-client.on('message', message => {
-  // If the message is "ping"
-  if (message.content === 'ping') {
-    // Send "pong" to the same channel
-    message.channel.send('pong');
+    saleh.reply({content:`**Click the button to invite : \n \`${bot.username}\` 👇**` , components:[row]})
   }
 });
+//https://ra3dstudio.com CopyRight Codes
 ///
 
 client.login(process.env.token)
